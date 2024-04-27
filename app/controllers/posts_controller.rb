@@ -9,12 +9,12 @@ class PostsController < ApplicationController
 
     def create
 
-        @post = Post.new(title: params[:title], body: params[:body])
+        @post = Post.new({title: params[:post][:title], content: params[:post][:content]})
 
         if @post.save 
         redirect_to @post
         else
-        render :new 
+        render :new, status: 422
         end
 
     end
